@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.env/
+
+# VS Code
+.vscode/
+*.code-workspace
+.history/
+
+# PyTorch/ML
+*.pth
+*.onnx
+*.pt
+*.pkl
+runs/
+checkpoints/
+logs/
+wandb/
+
+# Dataset and Media
+data/train/*
+data/test/*
+data/val/*
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+!data/train/.gitkeep
+!data/test/.gitkeep
+!data/val/.gitkeep
+
+# Models
+models/*
+!models/.gitkeep
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# Local development
+config.local.yml
+*.local.py
+.env.local
