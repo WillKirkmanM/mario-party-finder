@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Mario Party Minigame Recognizer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header img {
+            max-width: 300px;
+            height: auto;
+        }
+        h1 {
+            color: #e60012;
+            margin-top: 10px;
+        }
+        .results-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .image-container {
+            margin-bottom: 20px;
+            max-width: 100%;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 5px;
+            border: 2px solid #ddd;
+        }
+        .results {
+            width: 100%;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(1) {
+            background-color: rgba(230, 0, 18, 0.1);
+        }
+        .confidence-high {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        .confidence-medium {
+            color: #ff8f00;
+            font-weight: bold;
+        }
+        .confidence-low {
+            color: #c62828;
+            font-weight: bold;
+        }
+        .back-btn {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-btn:hover {
+            background-color: #0d8aee;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://mario.wiki.gallery/images/thumb/8/8a/Super_Mario_Party_Logo.png/1200px-Super_Mario_Party_Logo.png" alt="Mario Party Logo">
+            <h1>Minigame Results</h1>
+        </header>
+        
+        <div class="results-container">
+            <div class="image-container">
+                <img src="data:image/jpeg;base64,{{ image_b64 }}" alt="Uploaded Image">
+            </div>
+            
+            <div class="results">
+                <h2>Top 3 Predictions:</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Game</th>
+                            <th>Minigame</th>
+                            <th>Confidence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ result.game }}</td>
+                            <td>{{ result.minigame }}</td>
+                            <td class="{% if result.confidence|float > 0.7 %}confidence-high{% elif result.confidence|float > 0.3 %}confidence-medium{% else %}confidence-low{% endif %}">
+                                {{ result.confidence }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <a href="/" class="back-btn">Try Another Image</a>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 Mario Party Finder | Powered by PyTorch</p>
+    </footer>
+</body>
+</html>
