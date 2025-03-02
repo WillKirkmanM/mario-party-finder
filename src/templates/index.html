@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Party Minigame Recognizer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header img {
+            max-width: 300px;
+            height: auto;
+        }
+        h1 {
+            color: #e60012;
+            margin-top: 10px;
+        }
+        .upload-form {
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .file-input {
+            margin: 20px 0;
+        }
+        .submit-btn {
+            background-color: #e60012;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #cc0010;
+        }
+        .preview {
+            display: none;
+            margin-top: 20px;
+        }
+        .preview img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 5px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://mario.wiki.gallery/images/thumb/8/8a/Super_Mario_Party_Logo.png/1200px-Super_Mario_Party_Logo.png" alt="Mario Party Logo">
+            <h1>Minigame Recognizer</h1>
+        </header>
+        
+        <div class="upload-form">
+            <h2>Upload a Mario Party minigame screenshot</h2>
+            <form action="/predict" method="post" enctype="multipart/form-data">
+                <div class="file-input">
+                    <input type="file" name="file" id="file" accept=".jpg,.jpeg,.png,.webp" onchange="previewImage()">
+                </div>
+                
+                <div class="preview" id="imagePreview">
+                    <img id="preview" src="#" alt="Image Preview">
+                </div>
+                
+                <button type="submit" class="submit-btn">Identify Minigame</button>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 Mario Party Finder | Powered by PyTorch</p>
+    </footer>
+    
+    <script>
+        function previewImage() {
+            const file = document.getElementById('file').files[0];
+            const preview = document.getElementById('preview');
+            const previewDiv = document.getElementById('imagePreview');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewDiv.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
