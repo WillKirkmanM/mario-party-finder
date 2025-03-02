@@ -3,3 +3,5 @@ torchvision --index-url https://download.pytorch.org/whl/cpu
 torchaudio --index-url https://download.pytorch.org/whl/cpu
 numpy
 Pillow
+flask 
+werkzeug
